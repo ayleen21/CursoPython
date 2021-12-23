@@ -39,4 +39,4 @@ numero2 = 10
 if numero1>numero2:
     print("EL numero 1 es mayor")
 else:
-    print("El numero 2 es mayor")
+    print("El numero 2 es mayor ")
