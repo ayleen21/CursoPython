@@ -1,37 +1,35 @@
 #Propiedades
 
-
-
 class Coche():
     
     def __init__(self): #Metodo constructor
 
         #con el self se agregan las propiedades al estado inicial
 
-        self.largoChasis=250
-        self.anchoChasis=120
+        self.__largoChasis=250
+        self.__anchoChasis=120
         self.__Ruedas=4
-        self.enmarcha=False #Por defecto el coche detenido
+        self.__enmarcha=False #Por defecto el coche detenido
 
 #----------------COMPORTAMIENTOS-------------------
     def arrancar(self,arrancamos): #-->Objeto perteneciente de la clase
-        self.enmarcha=arrancamos
+        self.__enmarcha=arrancamos
 
-        if(self.enmarcha):
-            chequeo=self.chequeointerno()
+        if(self.__enmarcha):
+            chequeo=self.__chequeo_interno()
 
-        if(self.enmarcha and chequeo):
+        if(self.__enmarcha and chequeo):
             return "El coche esta en marcha"
 
-        elif(self.enmarcha and chequeo==False):  
+        elif(self.__enmarcha and chequeo==False):  
             return" Algo ha ido mal en el chequeo, no podemos arrancar"
         else:
             return "El coche esta parado"
             
     def estado(self):
-        print("El coche tiene " , self.__Ruedas, " ruedas. Un ancho de ", self.anchoChasis, "y un largo de ",self.largoChasis)
+        print("El coche tiene " , self.__Ruedas, " ruedas. Un ancho de ", self.__anchoChasis, "y un largo de ",self.__largoChasis)
 
-    def chequeointerno(self):
+    def __chequeo_interno(self):
         print("Realizando chequeo interno")
 
         self.gasolina="ok"
@@ -45,8 +43,6 @@ class Coche():
 #---------------------------------------------------------------------
 miCoche=Coche() #Instancia
 
-print("El largo del coche es: ",miCoche.largoChasis)
-print("El coche tiene ", self.__Ruedas " ruedas")
 
 print(miCoche.arrancar(True))
 
