@@ -17,21 +17,40 @@ class ListaPersonas:
 
     def __init__(self):
         listadePersonas=open("ficheroExterno","ab+") #Agregar informacion binaria
-        listadePersonas.seek(0)
+        listadePersonas.seek(0) #Desplazar a la posicion cero
+
+        try:
+                self.personas=pickle.load(listadePersonas)
+                print("Se cargaron {} personas del fichero externo".format(len(self.personas)))
+
+        except:
+                 print("El fichero esta vacio")
+
+        finally:
+                listadePersonas.close()
+                del(listadePersonas)
 
     def agregarPersonas(self,p):
         self.personas.append(p)
+        self.guardarPersonasenFicheroExterno()
 
     def mostrarPersonas(self):
         for p in self.personas:
             print(p)
 
-miLista=ListaPersonas()
-p=Persona("Sandra", "Femenino", 29)
-miLista.agregarPersonas(p)
-p=Persona("Antonio", "Masculino", 89)
-miLista.agregarPersonas(p)
-p=Persona("Ayleen", "Femenino", 11)
-miLista.agregarPersonas(p)
+    def guardarPersonasenFicheroExterno(self):
+        listadePersonas=open("ficheroExterno","wb")
+        pickle.dump(self.personas,listadePersonas)
+        listadePersonas.close()
+        del(listadePersonas)
 
-miLista.mostrarPersonas()
+    def mostrarInfoFicheroExterno(self):
+        print("La informacion del fichero externo es la siguiente: ")
+        for p in self.personas:
+         print (p)
+
+miLista=ListaPersonas()
+persona=Persona("Antonio","Masculino",49)
+miLista.agregarPersonas(persona)
+miLista.mostrarInfoFicheroExterno()
+
